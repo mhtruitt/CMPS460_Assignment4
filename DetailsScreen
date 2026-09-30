@@ -1,0 +1,74 @@
+// screens/DetailsScreen.js
+// Reads the product object that ProductsScreen passed via
+// `navigation.navigate('Details', { product })` and displays it.
+// The data comes back through the `route` prop that React Navigation
+// automatically supplies to every screen component.
+
+import React from 'react';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+
+export default function DetailsScreen({ route }) {
+  // Destructure the product object out of route.params — this is how a
+  // screen retrieves data that was sent to it during navigation.
+  const { product } = route.params;
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.card}>
+        <Text style={styles.name}>{product.name}</Text>
+        <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+
+        <View style={styles.divider} />
+
+        <Text style={styles.descriptionLabel}>Description</Text>
+        <Text style={styles.description}>{product.description}</Text>
+      </View>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#F5F6FA',
+  },
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 16,
+    padding: 24,
+    margin: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  name: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1B1F3B',
+    marginBottom: 6,
+  },
+  price: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#4A55A2',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#EAEAF0',
+    marginVertical: 18,
+  },
+  descriptionLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#888',
+    textTransform: 'uppercase',
+    marginBottom: 8,
+  },
+  description: {
+    fontSize: 15,
+    color: '#333',
+    lineHeight: 22,
+  },
+});
